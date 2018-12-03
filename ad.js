@@ -1686,7 +1686,7 @@ window.matchMedia || (window.matchMedia = function (win) {
             }
         }
 
-        console.log(results);
+       // console.log(results);
 
         return results;
     };
@@ -1745,46 +1745,48 @@ window.matchMedia || (window.matchMedia = function (win) {
 
             reqAdWidth = parseInt(el.getAttribute('data-adwidth'), 0) || false;
             reqAdHeight = parseInt(el.getAttribute('data-adheight'), 0) || false;
-            //adScripts = findAdScripts(el);
+            adScripts = findAdScripts(el);
 
-            isLoaded = (el.getAttribute('data-lazyad-loaded') === "true");
+            for (var i = 0; i < adScripts.length; i++) {
+                lazyAdEl = adScripts[i];
+
+                isLoaded = (el.getAttribute('data-lazyad-loaded') === "true");
 
 
-            if (reqAdWidth || reqAdHeight) {
-                elWidth = el.offsetWidth;
-                elHeight = el.offsetHeight;
-                sizeReqFulfilled = true;
+                if (reqAdWidth || reqAdHeight) {
+                    elWidth = el.offsetWidth;
+                    elHeight = el.offsetHeight;
+                    sizeReqFulfilled = true;
 
-                if (reqAdWidth && (reqAdWidth > elWidth)) sizeReqFulfilled = false;
-                if (reqAdHeight && (reqAdHeight > elHeight)) sizeReqFulfilled = false;
+                    if (reqAdWidth && (reqAdWidth > elWidth)) sizeReqFulfilled = false;
+                    if (reqAdHeight && (reqAdHeight > elHeight)) sizeReqFulfilled = false;
 
-                if (sizeReqFulfilled === false) {
-                    // log('Lazy-loaded container dimensions fulfilment not met.', reqAdWidth, reqAdHeight, elWidth, elHeight, el, lazyAdEl);
-                    if (isLoaded) {
-                        //unloadAds(el);
+                    if (sizeReqFulfilled === false) {
+                        // log('Lazy-loaded container dimensions fulfilment not met.', reqAdWidth, reqAdHeight, elWidth, elHeight, el, lazyAdEl);
+                        if (isLoaded) {
+                            unloadAds(el);
+                        }
+                        break;
                     }
-                    //break;
                 }
+
+                if (mq !== false && matchMedia(mq).matches === false) {
+                    // log('Lazy-loaded Ad media-query fulfilment not met.', el, lazyAdEl);
+                    if (isLoaded) {
+                        unloadAds(el);
+                    }
+                    break;
+                }
+
+                if (!isLoaded) {
+                    var innerHTML = ad_rs['data_src'];
+
+                    adReplace(el, innerHTML);
+                    counter++;
+                }
+
             }
 
-            if (mq !== false && matchMedia(mq).matches === false) {
-                // log('Lazy-loaded Ad media-query fulfilment not met.', el, lazyAdEl);
-                if (isLoaded) {
-                    //unloadAds(el);
-                }
-                //break;
-            }
-
-            if (!isLoaded) {
-                var innerHTML = ad_rs['data_src'];
-                //console.log(innerHTML);
-                //if(innerHTML == null)
-                //{
-                //  innerHTML = lazyAdEl.innerHTML;
-                //}
-                adReplace(el, innerHTML);
-                counter++;
-            }
 
         }
 
