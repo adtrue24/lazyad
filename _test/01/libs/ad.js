@@ -1,14 +1,4 @@
-/**
-* lazy-ads v1.1.10
-* Deliver synchronous ads asynchronously with RWD support without modifying the ad code.
-* Madgex. Build date: 15-05-2018
-*/
 
-/* Asynchronously write javascript, even with document.write., v1.4.0 https://krux.github.io/postscribe
-Copyright (c) 2015 Derek Brans, MIT license https://github.com/krux/postscribe/blob/master/LICENSE */// An html parser written in JavaScript
-// Based on http://ejohn.org/blog/pure-javascript-html-parser/
-//TODO(#39)
-/*globals console:false*/
 (function() {
   var supports = (function() {
     var supports = {};
@@ -1721,6 +1711,7 @@ window.matchMedia || (window.matchMedia = function (win) {
             mq,
             sizeReqFulfilled,
             ad_type,
+            ad_key,
             ad_rs,
             isLoaded;
 
@@ -1730,7 +1721,8 @@ window.matchMedia || (window.matchMedia = function (win) {
 
             el = adContainers[x];
             ad_type = el.getAttribute('data-adtype');
-            ad_rs = Get_Ad(ad_type);
+            ad_key = el.getAttribute('data-adkey');;//data-
+            ad_rs = Get_Ad(ad_type, ad_key);
             //console.log(ad_type, ad_rs);
             if(ad_rs['data_matchmedia'] != null )
             {

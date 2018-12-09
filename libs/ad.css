@@ -1,0 +1,44 @@
+.ad
+{
+    width: 100%;
+}
+#ad_mobile
+{
+    height: 126px;
+    width: 100%; 
+    margin: 0 auto;
+}
+
+#ad_desktop
+{
+    height: 260px; 
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media screen and (min-width:0) and (max-width:645px)
+{
+    #ad_mobile
+    {
+        display: inline-block;
+        margin: 2;
+
+    }
+    #ad_desktop {
+        display: none;
+    }
+}
+
+@media screen and (min-width:645px) and (max-width:9000px)
+{
+    #ad_mobile
+    {
+       display: none;
+    }
+    #ad_desktop
+    {
+        display: inline-block;
+        margin: 2;
+
+    }
+}
