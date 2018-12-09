@@ -23,6 +23,8 @@ function Get_Ad(adtype, adkey)
     {
 
         data_url = "https://fap.website/ad/go/mobi/300x100/"+adkey;
+        //data_url = "ad/ad_mobile.html?k="+adkey;
+        //data_url = 'http://project.local/eb24_all/code/domains/fap18.net/ad/mobi/300x100/test';
         data_height = 100;
 
     }
@@ -30,6 +32,8 @@ function Get_Ad(adtype, adkey)
     {
 
         data_url = "https://fap.website/ad/go/desktop/300x250/"+adkey;
+        //data_url = 'http://project.local/eb24_all/code/domains/fap18.net//ad/desktop/300x250/default/test';
+        //data_url = "ad/ad_desktop.html?k="+adkey;
         data_height = 250;
 
     }
@@ -65,6 +69,9 @@ if(ad_key === null)
 {
     var ad_key = 'all';
 }
+//Set_Ad('ad_lazy', ad_key);
+//Set_Ad('ad_mobile', ad_key);
+//Set_Ad('ad_desktop', ad_key);
 
 function find(tagName, className, context) {
         var results = [],

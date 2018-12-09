@@ -4,14 +4,14 @@
 }
 #ad_mobile
 {
-    height: 126px;
-    width: 100%; 
+    height: 100px;
+    width: 100%;
     margin: 0 auto;
 }
 
 #ad_desktop
 {
-    height: 260px; 
+    height: 250px;
     width: 100%;
     margin: 0 auto;
 }
